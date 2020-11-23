@@ -15,7 +15,7 @@ class Launcher extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.mute) { return; }
     const nextMessage = nextProps.messageList[nextProps.messageList.length - 1];
     const isIncoming = (nextMessage || {}).author === 'them';
@@ -40,7 +40,7 @@ class Launcher extends Component {
     }
   }
   render() {
-    const isOpen = this.props.hasOwnProperty('isOpen') ? this.props.isOpen : this.state.isOpen;
+  	const isOpen = this.props.hasOwnProperty('isOpen') ? this.props.isOpen : this.state.isOpen;
     const classList = [
       'sc-launcher',
       (isOpen ? 'opened' : ''),
