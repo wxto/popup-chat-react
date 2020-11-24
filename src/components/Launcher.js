@@ -16,7 +16,7 @@ class Launcher extends Component {
   }
 
 	UNSAFE_componentWillReceiveProps(nextProps) {
-    if (this.props.mute) { return; }
+  	if (this.props.mute) { return; }
     const nextMessage = nextProps.messageList[nextProps.messageList.length - 1];
     const isIncoming = (nextMessage || {}).author === 'them';
     const isNew = nextProps.messageList.length > this.props.messageList.length;
@@ -39,20 +39,24 @@ class Launcher extends Component {
       });
     }
   }
+
   render() {
   	const isOpen = this.props.hasOwnProperty('isOpen') ? this.props.isOpen : this.state.isOpen;
-    const classList = [
+
+  	const classList = [
       'sc-launcher',
       (isOpen ? 'opened' : ''),
     ];
+
     return (
       <div id="sc-launcher">
-        <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
+	      <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
           <MessageCount count={this.props.newMessagesCount} isOpen={isOpen} />
           <img className={'sc-open-icon'} src={launcherIconActive} />
           <img className={'sc-closed-icon'} src={launcherIcon} />
         </div>
-        <ChatWindow
+
+	      <ChatWindow
           messageList={this.props.messageList}
           onUserInputSubmit={this.props.onMessageWasSent}
           onFilesSelected={this.props.onFilesSelected}

@@ -4,7 +4,6 @@ import MessageList from './MessageList';
 import UserInput from './UserInput';
 import Header from './Header';
 
-
 class ChatWindow extends Component {
   constructor(props) {
     super(props);
@@ -39,6 +38,7 @@ class ChatWindow extends Component {
           onSubmit={this.onUserInputSubmit.bind(this)}
           onFilesSelected={this.onFilesSelected.bind(this)}
           showEmoji={this.props.showEmoji}
+          fileUpload={this.props.fileUpload}
         />
       </div>
     );

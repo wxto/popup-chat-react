@@ -6,9 +6,7 @@ import EmojiIcon from './icons/EmojiIcon';
 import PopupWindow from './popups/PopupWindow';
 import EmojiPicker from './emoji-picker/EmojiPicker';
 
-
 class UserInput extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -141,10 +139,11 @@ class UserInput extends Component {
           contentEditable="true"
           placeholder="Write a reply..."
           className="sc-user-input--text"
-        >
-        </div>
+        />
+
         <div className="sc-user-input--buttons">
-          <div className="sc-user-input--button"></div>
+          <div className="sc-user-input--button"/>
+
           <div className="sc-user-input--button">
             {this.props.showEmoji && <EmojiIcon
               onClick={this.toggleEmojiPicker}
@@ -152,7 +151,8 @@ class UserInput extends Component {
               tooltip={this._renderEmojiPopup()}
             />}
           </div>
-          {this._renderSendOrFileIcon()}
+
+          {this.props.fileUpload && this._renderSendOrFileIcon()}
         </div>
       </form>
     );
