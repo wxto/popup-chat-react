@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
+import { prop } from 'ramda';
+import React, { useRef, useEffect } from 'react';
 import Message from './Messages';
 
-class MessageList extends Component {
+function MessageList(props) {
+  const element = useRef(null);
+  const elementCurrent = prop('current', element);
 
-  componentDidUpdate(_prevProps, _prevState) {
-    this.scrollList.scrollTop = this.scrollList.scrollHeight;
-  }
+  useEffect(() => {
+    if (elementCurrent) {
+      elementCurrent.scrollTop = elementCurrent.scrollHeight;
+    }
+  }, [props]);
 
-  render () {
-    return (
-      <div className="sc-message-list" ref={el => this.scrollList = el}>
-        {this.props.messages.map((message, i) => {
-          return <Message message={message} key={i} />;
-        })}
-      </div>);
-  }
+  return (
+    <div className="sc-message-list" ref={element}>
+      {props.messages.map((message, i) => <Message message={message} key={i} />)}
+    </div>
+  );
 }
 
 export default MessageList;

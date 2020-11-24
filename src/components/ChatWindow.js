@@ -1,48 +1,32 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import classNames from 'classnames';
 import MessageList from './MessageList';
 import UserInput from './UserInput';
 import Header from './Header';
 
-class ChatWindow extends Component {
-  constructor(props) {
-    super(props);
-  }
+function ChatWindow(props) {
+  return (
+    <div className={classNames('sc-chat-window', { 'opened': props.isOpen }, { 'closed': !props.isOpen })}>
+      <Header
+        teamName={props.agentProfile.teamName}
+        imageUrl={props.agentProfile.imageUrl}
+        onClose={props.onClose}
+      />
 
-  onUserInputSubmit(message) {
-    this.props.onUserInputSubmit(message);
-  }
+      <MessageList
+        messages={props.messageList}
+        imageUrl={props.agentProfile.imageUrl}
+      />
 
-  onFilesSelected(filesList) {
-    this.props.onFilesSelected(filesList);
-  }
-
-  render() {
-    let messageList = this.props.messageList || [];
-    let classList = [
-      'sc-chat-window',
-      (this.props.isOpen ? 'opened' : 'closed')
-    ];
-    return (
-      <div className={classList.join(' ')}>
-        <Header
-          teamName={this.props.agentProfile.teamName}
-          imageUrl={this.props.agentProfile.imageUrl}
-          onClose={this.props.onClose}
-        />
-        <MessageList
-          messages={messageList}
-          imageUrl={this.props.agentProfile.imageUrl}
-        />
-        <UserInput
-          onSubmit={this.onUserInputSubmit.bind(this)}
-          onFilesSelected={this.onFilesSelected.bind(this)}
-          showEmoji={this.props.showEmoji}
-          fileUpload={this.props.fileUpload}
-        />
-      </div>
-    );
-  }
+      <UserInput
+        onSubmit={props.onUserInputSubmit}
+        onFilesSelected={props.onFilesSelected}
+        showEmoji={props.showEmoji}
+        fileUpload={props.fileUpload}
+      />
+    </div>
+  );
 }
 
 ChatWindow.propTypes = {
