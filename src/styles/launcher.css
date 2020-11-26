@@ -1,7 +1,7 @@
 .sc-launcher {
   width: 60px;
   height: 60px;
-  background-color: #4e8cff;
+  background-color: #f39314;
   background-position: center;
   background-repeat: no-repeat;
   position: fixed;
@@ -22,6 +22,10 @@
   transition: box-shadow 0.2s ease-in-out;
 }
 
+.sc-launcher.opened {
+  visibility: hidden;
+}
+
 .sc-launcher .sc-open-icon,
 .sc-launcher .sc-closed-icon {
   width: 60px;
@@ -36,6 +40,7 @@
   transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
   width: 60px;
   height: 60px;
+
 }
 
 .sc-launcher .sc-open-icon {

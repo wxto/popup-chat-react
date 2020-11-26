@@ -1,40 +1,43 @@
-import React, { Component } from 'react';
+import { prop, equals } from 'ramda';
+import React from 'react';
+import classNames from 'classnames';
 import TextMessage from './TextMessage';
 import EmojiMessage from './EmojiMessage';
 import FileMessage from './FileMessage';
 import chatIconUrl from './../../assets/chat-icon.svg';
 
+function Message({ message }) {
+  const type = prop('type', message);
+  const author = prop('author', message);
+  const me = equals(author, 'me');
 
-class Message extends Component {
-
-  _renderMessageOfType(type) {
+  function renderMessageOfType(type) {
     switch(type) {
     case 'text':
-      return <TextMessage {...this.props.message} />;
+      return <TextMessage {...message} />;
     case 'emoji':
-      return <EmojiMessage {...this.props.message} />;
+      return <EmojiMessage {...message} />;
     case 'file':
-      return <FileMessage {...this.props.message} />;
+      return <FileMessage {...message} />;
     default:
       console.error(`Attempting to load message with unsupported file type '${type}'`);
     }
   }
 
-  render () {
-    let contentClassList = [
-      'sc-message--content',
-      (this.props.message.author === 'me' ? 'sent' : 'received')
-    ];
-    return (
-      <div className="sc-message">
-        <div className={contentClassList.join(' ')}>
-          <div className="sc-message--avatar" style={{
+  return (
+    <div className="sc-message">
+      <div className={classNames('sc-message--content', { 'sent': me }, { 'received': !me })}>
+        <div
+          className="sc-message--avatar"
+          style={{
             backgroundImage: `url(${chatIconUrl})`
-          }}></div>
-          {this._renderMessageOfType(this.props.message.type)}
-        </div>
-      </div>);
-  }
+          }}
+        />
+
+        {renderMessageOfType(type)}
+      </div>
+    </div>
+  )
 }
 
 export default Message;

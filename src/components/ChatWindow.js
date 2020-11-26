@@ -4,26 +4,48 @@ import classNames from 'classnames';
 import MessageList from './MessageList';
 import UserInput from './UserInput';
 import Header from './Header';
+import PinMessage from './PinMessage';
 
 function ChatWindow(props) {
+  const {
+    isOpen,
+    onClose,
+    agentProfile,
+    showEmoji,
+    fileUpload,
+    messageList,
+    onUserInputSubmit,
+    onFilesSelected,
+    pinMessage,
+    placeholder,
+  } = props;
+
+  const {
+    teamName,
+    imageUrl,
+  } = agentProfile;
+
   return (
-    <div className={classNames('sc-chat-window', { 'opened': props.isOpen }, { 'closed': !props.isOpen })}>
+    <div className={classNames('sc-chat-window', { 'opened': isOpen }, { 'closed': !isOpen })}>
       <Header
-        teamName={props.agentProfile.teamName}
-        imageUrl={props.agentProfile.imageUrl}
-        onClose={props.onClose}
+        teamName={teamName}
+        imageUrl={imageUrl}
+        onClose={onClose}
       />
 
+      {pinMessage && <PinMessage pinMessage={pinMessage} />}
+
       <MessageList
-        messages={props.messageList}
-        imageUrl={props.agentProfile.imageUrl}
+        messages={messageList}
+        imageUrl={imageUrl}
       />
 
       <UserInput
-        onSubmit={props.onUserInputSubmit}
-        onFilesSelected={props.onFilesSelected}
-        showEmoji={props.showEmoji}
-        fileUpload={props.fileUpload}
+        onSubmit={onUserInputSubmit}
+        onFilesSelected={onFilesSelected}
+        showEmoji={showEmoji}
+        fileUpload={fileUpload}
+        placeholder={placeholder}
       />
     </div>
   );

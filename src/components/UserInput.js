@@ -103,6 +103,14 @@ class UserInput extends Component {
   )
 
   _renderSendOrFileIcon() {
+    if (!this.props.fileUpload) {
+      return (
+        <div className="sc-user-input--button">
+          <SendIcon onClick={this._submitText.bind(this)} />
+        </div>
+      );
+    }
+
     if (this.state.inputHasText) {
       return (
         <div className="sc-user-input--button">
@@ -110,6 +118,7 @@ class UserInput extends Component {
         </div>
       );
     }
+
     return (
       <div className="sc-user-input--button">
         <FileIcon onClick={this._showFilePicker.bind(this)} />
@@ -137,7 +146,7 @@ class UserInput extends Component {
           onKeyDown={this.handleKeyDown.bind(this)}
           onKeyUp={this.handleKeyUp.bind(this)}
           contentEditable="true"
-          placeholder="Write a reply..."
+          placeholder={this.props.placeholder}
           className="sc-user-input--text"
         />
 
@@ -152,7 +161,7 @@ class UserInput extends Component {
             />}
           </div>
 
-          {this.props.fileUpload && this._renderSendOrFileIcon()}
+          {this._renderSendOrFileIcon()}
         </div>
       </form>
     );

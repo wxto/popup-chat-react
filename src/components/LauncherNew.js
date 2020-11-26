@@ -10,7 +10,8 @@ import incomingMessageSound from '../assets/sounds/notification.mp3';
 function LauncherNew(props) {
   const {
     isOpen,
-	  handleClick,
+    onClick,
+    mute,
 	  showEmoji,
 	  agentProfile,
 	  messageList,
@@ -18,6 +19,8 @@ function LauncherNew(props) {
 	  onMessageWasSent,
 	  onFilesSelected,
     fileUpload,
+    pinMessage,
+    placeholder,
   } = props;
 
   const defaultState = {
@@ -51,7 +54,9 @@ function LauncherNew(props) {
 	  const isNew = massageListLength > prevMessageListLength;
 
 	  if (isIncoming && isNew) {
-	  	playIncomingMessageSound();
+	    if (!mute) {
+        playIncomingMessageSound();
+      }
 
 		  setState(state => ({
 			  ...state,
@@ -65,9 +70,9 @@ function LauncherNew(props) {
 	  audio.play();
   }
 
-  function onClick() {
-  	if (handleClick) {
-  		handleClick();
+  function handleClick() {
+  	if (onClick) {
+      onClick();
 	  } else {
   	  setState(state => ({
         ...state,
@@ -78,7 +83,7 @@ function LauncherNew(props) {
 
   return (
     <div id="sc-launcher">
-	    <div className={classNames('sc-launcher', { 'opened': state.isOpen })} onClick={onClick}>
+	    <div className={classNames('sc-launcher', { 'opened': state.isOpen })} onClick={handleClick}>
 		    <MessageCount count={newMessagesCount} isOpen={state.isOpen} />
 		    <img className={'sc-open-icon'} src={launcherIconActive} />
 		    <img className={'sc-closed-icon'} src={launcherIcon} />
@@ -90,9 +95,11 @@ function LauncherNew(props) {
 		    onFilesSelected={onFilesSelected}
 		    agentProfile={agentProfile}
 		    isOpen={state.isOpen}
-		    onClose={handleClick}
+		    onClose={onClick}
 		    showEmoji={showEmoji}
         fileUpload={fileUpload}
+        pinMessage={pinMessage}
+        placeholder={placeholder}
 	    />
     </div>
   );
@@ -110,16 +117,26 @@ const MessageCount = ({ count, isOpen }) => {
 
 LauncherNew.propTypes = {
   isOpen: PropTypes.bool,
-  handleClick: PropTypes.func,
+  onClick: PropTypes.func,
+  mute: PropTypes.bool,
+  showEmoji: PropTypes.bool,
+  messageList: PropTypes.arrayOf(PropTypes.object),
   newMessagesCount: PropTypes.number,
+  onMessageWasSent: PropTypes.func,
+  onMessageWasReceived: PropTypes.func,
   fileUpload: PropTypes.bool,
+  pinMessage: PropTypes.object,
+  placeholder: PropTypes.string,
 };
 
 LauncherNew.defaultProps = {
   isOpen: false,
-  newMessagesCount: 0,
+  mute: false,
   showEmoji: true,
+  messageList: [],
+  newMessagesCount: 0,
   fileUpload: true,
+  placeholder: 'Write a reply...'
 };
 
 export default LauncherNew;

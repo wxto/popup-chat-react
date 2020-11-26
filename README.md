@@ -1,9 +1,3 @@
-# Warning!
-
-This repo is not actively maintained or developed by kingofthestack. PRs, issues, and feature requests may not receive any response.
-
-Thank you for the support over the years for RCW! We appologize for the inconvenience.
-
 # react-chat-window
 
 `react-chat-window` provides an intercom-like chat window that can be included easily in any project for free. It provides no messaging facilities, only the view component.
@@ -40,49 +34,102 @@ $ npm install react-chat-window
 ## Example
 
 ``` javascript
-import React, {Component} from 'react'
-import {Launcher} from 'react-chat-window'
+import React, { useState } from 'react';
+import { Launcher } from '../../src';
 
-class Demo extends Component {
+function Demo() {
+  const [state, setState] = useState({
+    messageList: [],
+    newMessagesCount: 0,
+    isOpen: false,
+    fileUpload: true,
+  });
 
-  constructor() {
-    super();
-    this.state = {
-      messageList: []
-    };
+  function onMessageWasSent(message) {
+    setState(state => ({
+      ...state,
+      messageList: [...state.messageList, message]
+    }));
   }
 
-  _onMessageWasSent(message) {
-    this.setState({
-      messageList: [...this.state.messageList, message]
-    })
+  function onFilesSelected(fileList) {
+    const objectURL = window.URL.createObjectURL(fileList[0]);
+
+    setState(state => ({
+      ...state,
+      messageList: [
+        ...state.messageList,
+        {
+          type: 'file', author: 'me',
+          data: {
+            url: objectURL,
+            fileName: fileList[0].name,
+          }
+        }
+      ]
+    }));
   }
 
-  _sendMessage(text) {
+  function sendMessage(text) {
     if (text.length > 0) {
-      this.setState({
-        messageList: [...this.state.messageList, {
-          author: 'them',
-          type: 'text',
-          data: { text }
-        }]
-      })
+      const newMessagesCount = state.isOpen ? state.newMessagesCount : state.newMessagesCount + 1;
+
+      setState(state => ({
+        ...state,
+        newMessagesCount: newMessagesCount,
+        messageList: [
+          ...state.messageList,
+          {
+            author: 'them',
+            type: 'text',
+            data: { text }
+          }
+        ]
+      }));
     }
   }
 
-  render() {
-    return (<div>
+  function onClick() {
+    setState(state => ({
+      ...state,
+      isOpen: !state.isOpen,
+      newMessagesCount: 0
+    }));
+  }
+
+  return (
+    <div>
+      <Header />
+
+      <TestArea
+        onMessage={sendMessage}
+      />
+
       <Launcher
         agentProfile={{
           teamName: 'react-chat-window',
           imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
         }}
-        onMessageWasSent={this._onMessageWasSent.bind(this)}
-        messageList={this.state.messageList}
+        onMessageWasSent={onMessageWasSent}
+        onFilesSelected={onFilesSelected}
+        messageList={state.messageList}
+        newMessagesCount={state.newMessagesCount}
+        onClick={onClick}
+        isOpen={state.isOpen}
         showEmoji
+        fileUpload={state.fileUpload}
+        pinMessage={{
+          imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
+          title: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+          text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
+        }}
+        placeholder='placeholder'
       />
-    </div>)
-  }
+
+      <img className="demo-monster-img" src={monsterImgUrl} />
+      <Footer />
+    </div>
+  );
 }
 ```
 
@@ -99,7 +146,7 @@ Launcher props:
 |      prop        | type   | required | description |
 |------------------|--------|----------|-------------|
 | agentProfile     | [object](#agent-profile-objects) | yes | Represents your product or service's customer service agent. Fields: imageUrl (string), teamName (string). |
-| handleClick      | function | yes | Intercept the click event on the launcher. No argument sent when function is called. |
+| onClick          | function | yes | Intercept the click event on the launcher. No argument sent when function is called. |
 | isOpen           | boolean | yes | Force the open/close state of the chat window. If this is not set, it will open and close when clicked. |
 | messageList      | [[message](#message-objects)] | yes | An array of message objects to be rendered as a conversation. |
 | mute             | boolean | no | Don't play sound for incoming messages. Defaults to `false`. |
@@ -107,6 +154,9 @@ Launcher props:
 | onFilesSelected  | function([fileList](https://developer.mozilla.org/en-US/docs/Web/API/FileList)) | no | Called after file has been selected from dialogue in chat window. |
 | onMessageWasSent | function([message](#message-objects)) | yes | Called when a message is sent, with a message object as an argument. |
 | showEmoji        | boolean | no | Whether or not to show the emoji button in the input bar. Defaults to `true`.
+| fileUpload       | boolean | no | 
+| pinMessage       | object  | no | 
+| placeholder      | string  | no | 
 
 
 ### Message Objects
@@ -152,7 +202,3 @@ Look like this:
   teamName: 'Da best'
 }
 ```
-
-## People Using react-chat-window
-
-If you're using react-chat-window in a product I'd love to see what you're making! Email me at dylan@kingofthestack.com
