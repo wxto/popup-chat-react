@@ -18,7 +18,7 @@
 - Backend agnostic
 - Free
 
-## [Demo](https://asliddinusmonov.github.io/react-popup-chat/)
+## [Demo](https://asliddinusmonov.github.io/popup-chat-react/)
 
 ## Table of Contents
 - [Installation](#installation)
@@ -28,7 +28,7 @@
 ## Installation
 
 ```
-$ npm install react-popup-chat
+$ npm install popup-chat-react
 ```
 
 ## Example
