@@ -1,16 +1,16 @@
-# react-popup-chat
+# popup-chat-react
 
-`react-chat-window` provides an intercom-like chat window that can be included easily in any project for free. It provides no messaging facilities, only the view component.
+`popup-chat-react` provides an intercom-like chat window that can be included easily in any project for free. It provides no messaging facilities, only the view component.
 
-![GitHub license](https://img.shields.io/github/package-json/v/kingofthestack/react-chat-window.svg?style=flat-square) <a href="https://www.npmjs.com/package/react-chat-window" target="\_parent">
-  <img alt="" src="https://img.shields.io/npm/dm/react-chat-window.svg" />
+![GitHub license](https://img.shields.io/github/package-json/v/asliddinusmonov/popup-chat-react.svg?style=flat-square) <a href="https://www.npmjs.com/package/popup-chat-react" target="\_parent">
+  <img alt="" src="https://img.shields.io/npm/dm/popup-chat-react.svg" />
 </a>
-<a href="https://github.com/kingofthestack/react-chat-window" target="\_parent">
-  <img alt="" src="https://img.shields.io/github/stars/kingofthestack/react-chat-window.svg?style=social&label=Star" />
+<a href="https://github.com/asliddinusmonov/popup-chat-react" target="\_parent">
+  <img alt="" src="https://img.shields.io/github/stars/asliddinusmonov/popup-chat-react.svg?style=social&label=Star" />
 </a>
 <br/>
 
-![Demo gif of react-chat-window being used](https://puu.sh/xei2F/fd4a121185.gif)
+![Demo gif of popup-chat-react being used](https://puu.sh/xei2F/fd4a121185.gif)
 
 ## Features
 
@@ -107,7 +107,7 @@ function Demo() {
 
       <Launcher
         agentProfile={{
-          teamName: 'react-chat-window',
+          teamName: 'popup-chat-react',
           imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
         }}
         onMessageWasSent={onMessageWasSent}
@@ -139,7 +139,7 @@ For more detailed examples see the demo folder.
 
 # Launcher
 
-`Launcher` is the only component needed to use react-chat-window. It will react dynamically to changes in messages. All new messages must be added via a change in props as shown in the example.
+`Launcher` is the only component needed to use popup-chat-react. It will react dynamically to changes in messages. All new messages must be added via a change in props as shown in the example.
 
 Launcher props:
 

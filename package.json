@@ -1,7 +1,7 @@
 {
-  "name": "react-popup-chat",
+  "name": "popup-chat-react",
   "version": "1.0.0",
-  "description": "react-popup-chat React component",
+  "description": "popup-chat-react React component",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -24,7 +24,7 @@
     "prop-types": "^15.7.2",
     "ramda": "^0.27.1",
     "react-highlight.js": "^1.0.7",
-    "react-linkify": "^0.2.1",
+    "react-linkify": "^1.0.0-alpha",
     "socket.io-client": "^3.0.3"
   },
   "peerDependencies": {
@@ -38,12 +38,12 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
-  "author": "Asliddin Usmonov",
-  "homepage": "https://github.com/asliddinusmonov/react-popup-chat.git",
+  "author": "asliddinusmonov",
+  "homepage": "https://github.com/asliddinusmonov/popup-chat-react",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/asliddinusmonov/react-popup-chat.git"
+    "url": "https://github.com/asliddinusmonov/popup-chat-react"
   },
   "keywords": [
     "react-popup",
