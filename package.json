@@ -1,6 +1,6 @@
 {
   "name": "react-popup-chat",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "react-popup-chat React component",
   "main": "lib/index.js",
   "module": "es/index.js",

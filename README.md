@@ -18,7 +18,7 @@
 - Backend agnostic
 - Free
 
-## [Demo](https://kingofthestack.github.io/react-chat-window/)
+## [Demo](https://asliddinusmonov.github.io/react-popup-chat/)
 
 ## Table of Contents
 - [Installation](#installation)
