@@ -1,7 +1,7 @@
 {
-  "name": "react-chat-window",
-  "version": "1.2.0",
-  "description": "react-chat-window React component",
+  "name": "react-popup-chat",
+  "version": "0.2.0",
+  "description": "react-popup-chat React component",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -38,14 +38,16 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
-  "author": "kingofthestack",
-  "homepage": "https://kingofthestack.github.io/react-chat-window/",
+  "author": "Asliddin Usmonov",
+  "homepage": "https://github.com/asliddinusmonov/react-popup-chat.git",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kingofthestack/react-chat-window.git"
+    "url": "https://github.com/asliddinusmonov/react-popup-chat.git"
   },
   "keywords": [
-    "react-component"
+    "react-popup",
+    "react-chat",
+    "react-popup-chat"
   ]
 }
