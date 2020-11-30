@@ -20,9 +20,6 @@ function TestArea({ onMessage }) {
     <div className="demo-test-area--wrapper">
       <div className="demo-test-area--title">
         <div className="demo-test-area--title-main">popup-chat-react demo</div>
-        <div className="demo-test-area--title-sub">
-          <a href="https://slashdash.dev">made by SlashDash</a>
-        </div>
       </div>
       <form className="demo-test-area" onSubmit={handleSubmit}>
         <div className="demo-test-area--preamble">Test the chat window by sending a message:</div>

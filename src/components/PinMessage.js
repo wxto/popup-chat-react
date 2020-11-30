@@ -1,12 +1,10 @@
-import { pipe, prop, length, ifElse } from 'ramda';
+import { pipe, prop, propOr, length, ifElse } from 'ramda';
 import React from 'react';
 import PropTypes from 'prop-types';
+import defaultImage from '../assets/image.png';
 
 function PinMessage({ pinMessage }) {
-  const {
-    imageUrl,
-  } = pinMessage;
-
+  const image = propOr(defaultImage, 'imageUrl', pinMessage);
   const title = pipe(
     prop('title'),
     ifElse(
@@ -15,7 +13,6 @@ function PinMessage({ pinMessage }) {
       item => item,
     )
   )(pinMessage);
-
   const text = pipe(
     prop('text'),
     ifElse(
@@ -29,7 +26,7 @@ function PinMessage({ pinMessage }) {
     <div className='sc-pin--message'>
       <img
         className='sc-pin--message--img'
-        src={imageUrl}
+        src={image}
         alt=""
       />
       <div className='sc-pin--message--desc'>
@@ -39,6 +36,10 @@ function PinMessage({ pinMessage }) {
     </div>
   );
 }
+
+PinMessage.defaultProps = {
+  imageUrl: defaultImage,
+};
 
 PinMessage.propTypes = {
   imageUrl: PropTypes.string.isRequired,
