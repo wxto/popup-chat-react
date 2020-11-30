@@ -7,10 +7,8 @@
 .sc-pin--message--img {
   border-radius: 15px;
   align-self: center;
-  height: 30px;
-  width: 30px;
-  max-width: 30px;
-  padding: 10px;
+  width: 45px;
+  padding: 5px;
 }
 
 .sc-pin--message--desc {
