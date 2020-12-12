@@ -8,8 +8,8 @@ function PinMessage({ pinMessage }) {
   const title = pipe(
     prop('title'),
     ifElse(
-      item => length(item) > 37,
-      item => `${item.slice(0, 37)}...`,
+      item => length(item) > 34,
+      item => `${item.slice(0, 34)}...`,
       item => item,
     )
   )(pinMessage);
