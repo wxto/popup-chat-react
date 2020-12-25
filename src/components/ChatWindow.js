@@ -17,6 +17,7 @@ function ChatWindow(props) {
     onUserInputSubmit,
     onFilesSelected,
     pinMessage,
+	  onPinMessage,
     placeholder,
   } = props;
 
@@ -33,7 +34,7 @@ function ChatWindow(props) {
         onClose={onClose}
       />
 
-      {pinMessage && <PinMessage pinMessage={pinMessage} />}
+      {pinMessage && <PinMessage pinMessage={pinMessage} onPinMessage={onPinMessage} />}
 
       <MessageList
         messages={messageList}
@@ -52,12 +53,17 @@ function ChatWindow(props) {
 }
 
 ChatWindow.propTypes = {
-  agentProfile: PropTypes.object.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  onFilesSelected: PropTypes.func,
+  agentProfile: PropTypes.object.isRequired,
+  showEmoji: PropTypes.bool,
+  fileUpload: PropTypes.bool,
+  messageList: PropTypes.array,
   onUserInputSubmit: PropTypes.func.isRequired,
-  showEmoji: PropTypes.bool
+  onFilesSelected: PropTypes.func,
+  pinMessage: PropTypes.object,
+  onPinMessage: PropTypes.func,
+  placeholder: PropTypes.string,
 };
 
 export default ChatWindow;

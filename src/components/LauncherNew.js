@@ -20,6 +20,7 @@ function LauncherNew(props) {
 	  onFilesSelected,
     fileUpload,
     pinMessage,
+	  onPinMessage,
     placeholder,
   } = props;
 
@@ -99,6 +100,7 @@ function LauncherNew(props) {
 		    showEmoji={showEmoji}
         fileUpload={fileUpload}
         pinMessage={pinMessage}
+		    onPinMessage={onPinMessage}
         placeholder={placeholder}
 	    />
     </div>
@@ -126,6 +128,7 @@ LauncherNew.propTypes = {
   onMessageWasReceived: PropTypes.func,
   fileUpload: PropTypes.bool,
   pinMessage: PropTypes.object,
+  onPinMessage: PropTypes.func,
   placeholder: PropTypes.string,
 };
 

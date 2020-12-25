@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import defaultImage from '../assets/image.png';
 
-function PinMessage({ pinMessage }) {
+function PinMessage({ pinMessage, onPinMessage }) {
   const image = propOr(defaultImage, 'imageUrl', pinMessage);
   const title = pipe(
     prop('title'),
@@ -23,7 +23,7 @@ function PinMessage({ pinMessage }) {
   )(pinMessage);
 
   return (
-    <div className='sc-pin--message'>
+    <div className='sc-pin--message' onClick={() => onPinMessage(pinMessage)}>
       <img
         className='sc-pin--message--img'
         src={image}
@@ -37,14 +37,9 @@ function PinMessage({ pinMessage }) {
   );
 }
 
-PinMessage.defaultProps = {
-  imageUrl: defaultImage,
-};
-
 PinMessage.propTypes = {
-  imageUrl: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  pinMessage: PropTypes.object,
+  onPinMessage: PropTypes.func,
 };
 
 export default PinMessage;
