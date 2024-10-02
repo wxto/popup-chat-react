@@ -23,7 +23,7 @@
     "gh-pages": "^3.1.0",
     "prop-types": "^15.7.2",
     "ramda": "^0.27.1",
-    "react-highlight.js": "^1.0.7",
+    "react-highlight": "^0.15.0",
     "react-linkify": "^1.0.0-alpha",
     "socket.io-client": "^3.0.3"
   },
