@@ -28,15 +28,16 @@
     "socket.io-client": "^3.0.3"
   },
   "peerDependencies": {
-    "react": "17.x"
+    "react": "18.x",
+    "react-dom": "18.x"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.14.0",
     "eslint-plugin-react": "^7.21.5",
     "nwb": "^0.25.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "author": "asliddinusmonov",
   "homepage": "https://github.com/asliddinusmonov/popup-chat-react",
